@@ -18,7 +18,7 @@ class RubberDuck extends Duck {
   void swim() => print('swim');
   void display() => print('display');
   void fly() {
-    // FIXME: RubberDuckはflyする必要がない
-    // FIXME: SubClassでは、機能追加のときに不要な継承が発生する可能性があり、保守性が低くなる。
+    // MEMO: RubberDuckはflyする必要がない
+    // MEMO: SubClassでは、機能追加のときに不要な継承が発生する可能性があり、保守性が低くなる。
   }
 }
