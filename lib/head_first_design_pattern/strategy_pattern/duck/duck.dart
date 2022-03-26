@@ -1,6 +1,5 @@
-import 'package:playground/head_first_design_pattern/anti_patterns/strategy_pattern/quack_behavior.dart';
-
 import '../fly_behavior.dart';
+import '../quack_behavior.dart';
 
 abstract class Duck {
   const Duck({
@@ -15,17 +14,4 @@ abstract class Duck {
   void display();
   void quack() => quackBehavior.call();
   void fly() => flyBehavior.call();
-}
-
-class MallardDuck extends Duck {
-  MallardDuck()
-      : super(
-          flyBehavior: flyWithWings,
-          quackBehavior: quackNormal,
-        );
-
-  @override
-  void display() {
-    print('showMallardDuck');
-  }
 }
