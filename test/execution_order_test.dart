@@ -13,18 +13,18 @@ void main() {
     print('test_2');
   });
 
-  group('grouped_test', () {
+  group('group', () {
     print('group');
     setUp(() {
       print('setUp_in_group');
     });
 
-    test('test_in_group_1', () {
-      print('test_in_group_1');
+    test('test_1_in_group', () {
+      print('test_1_in_group');
     });
 
-    test('test_in_group_2', () {
-      print('test_in_group_2');
+    test('test_2_in_group', () {
+      print('test_2_in_group');
     });
   });
 }
