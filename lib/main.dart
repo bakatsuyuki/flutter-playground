@@ -36,12 +36,13 @@ class MyHomePage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('anyScopedValue: ${ref.watch(_anyScopedValue)}'),
-            Text(
-              'valueWithDependencies: ${ref.watch(_valueWithDependencies)}',
-            ),
-            Text(
-              'valueWithDependencies2: ${ref.watch(_valueWithDependencies2)}',
+            _TextWidgets(),
+            Text('These are overrides with 3'),
+            ProviderScope(
+              overrides: [
+                _anyScopedValue.overrideWithValue('3'),
+              ],
+              child: _TextWidgets(),
             ),
             // It's thrown error because not add dependency to _anyScopedValue
             /*
@@ -55,6 +56,26 @@ class MyHomePage extends ConsumerWidget {
         onPressed: () => ref.read(_countState.notifier).state++,
         child: Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class _TextWidgets extends ConsumerWidget {
+  const _TextWidgets({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('anyScopedValue: ${ref.watch(_anyScopedValue)}'),
+        Text(
+          'valueWithDependencies: ${ref.watch(_valueWithDependencies)}',
+        ),
+        Text(
+          'valueWithDependencies2: ${ref.watch(_valueWithDependencies2)}',
+        ),
+      ],
     );
   }
 }
