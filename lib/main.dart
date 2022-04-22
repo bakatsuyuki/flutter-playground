@@ -51,20 +51,31 @@ class MyHomePage extends ConsumerWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => ref.read(_countState.notifier).state++,
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
 
 final _anyScopedValue = Provider((_) => '1');
 final _valueWithDependencies = Provider(
-  (ref) => ref.watch(_anyScopedValue),
-  dependencies: [_anyScopedValue],
+  (ref) => '${ref.watch(_anyScopedValue)}${ref.watch(_countState)}',
+  // It needs a dependency to _countState if using 'dependencies.'
+  dependencies: [_anyScopedValue, _countState],
 );
 final _valueWithDependencies2 = Provider(
   (ref) => ref.watch(_valueWithDependencies),
   dependencies: [_valueWithDependencies],
 );
 
+final _countState = StateProvider(
+  (ref) => 0,
+);
+
+/*
 final _valueNotDependScopedValue = Provider(
   (ref) => ref.watch(_anyScopedValue),
 );
+*/
